@@ -8,8 +8,8 @@ import { UsersModule } from './users/users.module';
 import { JwtModule } from '@nestjs/jwt';
 import { APP_PIPE } from '@nestjs/core';
 import { CurrentUserMiddleware } from './middlewares/Current-User.middleware';
-// import { ServeStaticModule } from '@nestjs/serve-static';
-// import { join } from 'path/posix';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path/posix';
 
 @Module({
   imports: [
@@ -18,9 +18,9 @@ import { CurrentUserMiddleware } from './middlewares/Current-User.middleware';
       envFilePath: '.env',
     }),
     JwtModule.register({}),
-    // ServeStaticModule.forRoot({
-    //   rootPath: join(__dirname, './', 'client/dist'),
-    // }),
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'client'),
+    }),
     MongooseModule.forRoot(process.env.MONGO_URL),
     UsersModule,
     MyModuleModule,

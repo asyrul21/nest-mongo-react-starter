@@ -15,6 +15,9 @@ export class User {
 
   @Prop({ default: Date.now() })
   createdDate: Date;
+
+  @Prop({ default: false })
+  isAdmin: boolean;
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

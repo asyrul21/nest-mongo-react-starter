@@ -20,15 +20,16 @@ export class UsersService {
   ) {}
 
   async signup(user: CreateUserDto) {
-    const { name, email, password } = user;
+    const { name, email, password, isAdmin } = user;
 
     const salt = await bcrypt.genSalt();
     const hash = await bcrypt.hash(password, salt);
 
     const User = {
-      name: name,
-      email: email,
+      name,
+      email,
       password: hash,
+      isAdmin,
     };
 
     try {
