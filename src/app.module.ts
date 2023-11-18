@@ -19,7 +19,7 @@ import { join } from 'path/posix';
     }),
     JwtModule.register({}),
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '..', 'client'),
+      rootPath: join(__dirname, '../../', 'client/build'),
     }),
     MongooseModule.forRoot(process.env.MONGO_URL),
     UsersModule,
