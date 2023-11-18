@@ -50,7 +50,9 @@ export const getItems =
       const { data } = await axios.get(`/api/items?${paramsString}`);
       dispatch({
         type: GET_ITEMS_SUCCESS,
-        payload: data,
+        payload: {
+          items: data,
+        },
       });
     } catch (error) {
       dispatch({

@@ -1,8 +1,21 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 .app_main {
-  width: 100vw;
+  max-width: 100vw;
   margin-top: 54px;
   min-height: calc(100vh - 54px);
   padding: 24px 48px;
+}
+
+.app_title {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 5px;
+  font-size: 28px;
 }
 
 .no_select {
@@ -14,19 +27,62 @@
   user-select: none; // Non-prefixed version
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.row_container {
+  border: 2px solid red;
+  padding: 20px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  &:hover {
+    background-color: #e3e3e3;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.app_form {
+  border: 1px solid #455d7a;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 2px -2px rgba(0, 0, 0, 0.2);
+}
+
+.input_group {
+  // border: 2px solid red;
   display: flex;
-  flex-direction: column;
+  flex-direction: horizontal;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: flex-start;
+  margin-bottom: 10px;
+  padding: 10px;
+}
+
+.input_label {
+  font-size: 14px;
+  display: inline-block;
+  min-width: 160px;
+}
+
+.input_container {
+  flex: 1;
+}
+
+.input_input {
+  font-size: 14px;
+  width: 100%;
+  height: 32px;
+  padding: 5px 10px;
+}
+
+.form_submit_button {
+  transition: background-color 0.2s;
+  margin-top: 10px;
+  width: 100%;
+  height: 36px;
+  cursor: pointer;
+  background-color: #455d7a;
   color: white;
+  border: none;
+  border-radius: 5px;
+  &:hover {
+    background-color: #233142;
+  }
+  font-size: 14px;
 }

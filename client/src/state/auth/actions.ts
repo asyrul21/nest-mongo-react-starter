@@ -78,7 +78,7 @@ export const registerUser =
         type: REGISTER_USER_REQUEST,
       });
       const config = buildJsonHeaderConfig();
-      await axios.post(
+      const { data } = await axios.post(
         'api/auth/signup',
         {
           name,
@@ -89,6 +89,10 @@ export const registerUser =
       );
       dispatch({
         type: REGISTER_USER_SUCCESS,
+      });
+      dispatch({
+        type: LOGIN_USER_SUCCESS,
+        payload: data.user,
       });
     } catch (error) {
       dispatch({

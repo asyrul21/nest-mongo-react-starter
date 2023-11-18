@@ -2,17 +2,17 @@ import React, { useContext, useState } from 'react';
 import './Navbar.scss';
 import classnames from 'classnames';
 import { Link } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
 import { logoutUser, resetRegisterUserReducer } from '../../state/auth/actions';
+import { useLoggedInUser } from '../../Hooks/useLoggedInUser';
 
 const Navbar = () => {
   const dispatch = useDispatch();
   const history = useHistory();
 
-  const authLoginReducer = useSelector((state: any) => state.authLogin);
-  const { isAuthenticated, loggedInUser } = authLoginReducer;
+  const { loggedInUser, isAuthenticated } = useLoggedInUser();
 
   const handleLogoutButton = () => {
     dispatch(logoutUser());
@@ -29,8 +29,9 @@ const Navbar = () => {
     no_select: true,
   });
 
-  // const userIsLoggedIn = isAuthenticated && loggedInUser;
-  const userIsLoggedIn = true;
+  console.log('navbar', loggedInUser);
+
+  const userIsLoggedIn = isAuthenticated && loggedInUser;
   return (
     <nav className={containerClasses}>
       <div className="navbar_left">
@@ -55,9 +56,11 @@ const Navbar = () => {
             <div className="navbar_greeting">
               Hello, <span>{loggedInUser?.name || 'John'}</span>
             </div>
-            <Link className={navItemClasses} to="/admin">
-              Manage
-            </Link>
+            {loggedInUser && loggedInUser.isAdmin && (
+              <Link className={navItemClasses} to="/admin">
+                Manage
+              </Link>
+            )}
             <button onClick={handleLogoutButton} className={navItemClasses}>
               Logout
             </button>

@@ -27,8 +27,8 @@ export class UserController {
 
   @Post('/signin')
   async signIn(@Res() response, @Body() user: UserLoginDto) {
-    const token = await this.authService.signin(user);
-    return response.status(HttpStatus.OK).json(token);
+    const User = await this.authService.signin(user);
+    return response.status(HttpStatus.OK).json(User);
   }
 
   @UseGuards(AuthGuard)

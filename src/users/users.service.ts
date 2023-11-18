@@ -48,13 +48,19 @@ export class UsersService {
       const { password: foundUserPassword } = foundUser;
 
       if (bcrypt.compare(requestPassword, foundUserPassword)) {
-        const payload = { email: user.email };
-        return {
-          token: this.jwtService.sign(payload, {
+        const jwtPayload = { email: user.email };
+
+        const result = {
+          _id: foundUser.id,
+          name: foundUser.name,
+          token: this.jwtService.sign(jwtPayload, {
             secret: process.env.JWT_SECRET,
             expiresIn: '60d',
           }),
+          email: foundUser.email,
+          isAdmin: foundUser.isAdmin,
         };
+        return result;
       }
 
       throw new UnauthorizedException('Incorrect username or password');
