@@ -34,8 +34,7 @@ export class UsersService {
 
     try {
       const createdUser = new this.UserModel(User);
-      const result = await createdUser.save();
-      return result;
+      return await createdUser.save();
     } catch (error) {
       throw new BadRequestException(error.message || error);
     }
