@@ -10,6 +10,8 @@ import { APP_PIPE } from '@nestjs/core';
 import { CurrentUserMiddleware } from './middlewares/Current-User.middleware';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path/posix';
+import { BullModule } from '@nestjs/bull';
+import { QueueModuleModule } from './queue-module/queue-module.module';
 
 @Module({
   imports: [
@@ -20,9 +22,16 @@ import { join } from 'path/posix';
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '../../', 'client/build'),
     }),
+    BullModule.forRoot({
+      redis: {
+        host: 'localhost',
+        port: 6379,
+      },
+    }),
     MongooseModule.forRoot(process.env.MONGO_URL),
     UsersModule,
     MyModuleModule,
+    QueueModuleModule,
   ],
   controllers: [AppController],
   providers: [

@@ -1,0 +1,10 @@
+version: '2'
+services:
+  app:
+    build:
+      context: .
+    restart: always
+    ports:
+      - '3000:5000'
+    volumes:
+      - .:.
