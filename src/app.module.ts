@@ -15,7 +15,6 @@ import { join } from 'path/posix';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: '.env',
     }),
     JwtModule.register({}),
     ServeStaticModule.forRoot({
