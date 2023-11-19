@@ -8,6 +8,7 @@
   "scripts": {
     "install:server": "npm install",
     "install:client": "npm install --prefix client",
+    "build:prod": "npx nest build",
     "build:server": "nest build",
     "build:client": " npm run build --prefix client",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -17,14 +18,14 @@
     "start:prod": "node dist/src/main",
     "start:client": "npm start --prefix client",
     "start:app": "concurrently \"npm run start:dev\" \"npm run start:client\"",
-    "deploy": "npm run start:prod",
+    "deploy": "npm run install:server && npm run build:prod && npm run start:prod",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm run install:client && npm run build:client"
+    "heroku-prebuild": "NPM_CONFIG_PRODUCTION=false npm run install:client && npm run build:client"
   },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
