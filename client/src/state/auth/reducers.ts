@@ -12,7 +12,7 @@ import {
   REGISTER_USER_RESET,
 } from './constants';
 
-const loginInitialState = {
+export const loginInitialState = {
   isAuthenticated: false,
   loggedInUser: null,
   loading: false,

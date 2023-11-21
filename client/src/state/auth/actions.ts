@@ -35,6 +35,8 @@ export const loginUser =
         type: LOGIN_USER_SUCCESS,
         payload: data,
       });
+      // set user to local storage
+      localStorage.setItem('userInfo', JSON.stringify(data));
     } catch (error) {
       dispatch({
         type: LOGIN_USER_FAIL,
@@ -55,10 +57,10 @@ export const removeLoginErrors = () => async (dispatch: any) => {
 };
 
 export const logoutUser = () => async (dispatch: any) => {
+  localStorage.removeItem('userInfo');
   dispatch({
     type: LOGIN_USER_REQUEST,
   });
-
   dispatch({
     type: LOGOUT_USER,
   });
@@ -92,8 +94,10 @@ export const registerUser =
       });
       dispatch({
         type: LOGIN_USER_SUCCESS,
-        payload: data.user,
+        payload: data,
       });
+      // set user to local storage
+      localStorage.setItem('userInfo', JSON.stringify(data));
     } catch (error) {
       dispatch({
         type: REGISTER_USER_FAIL,

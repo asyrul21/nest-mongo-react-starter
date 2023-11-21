@@ -1,5 +1,9 @@
 import { JwtService } from '@nestjs/jwt';
-import { Injectable, NestMiddleware } from '@nestjs/common';
+import {
+  Injectable,
+  NestMiddleware,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { Request, Response, NextFunction } from 'express';
 import { UsersService } from '../users/users.service';
 import { User } from 'src/models/User';
@@ -16,20 +20,25 @@ export class CurrentUserMiddleware implements NestMiddleware {
   ) {}
 
   async use(req: UserRequest, res: Response, next: NextFunction) {
-    if (
-      req.headers.authorization &&
-      req.headers.authorization.startsWith('Bearer')
-    ) {
-      const token = req.headers.authorization.split(' ')[1];
-      const decoded = await this.jwt.verify(token, {
-        secret: process.env.JWT_SECRET,
-      });
+    try {
+      if (
+        req.headers.authorization &&
+        req.headers.authorization.startsWith('Bearer')
+      ) {
+        const token = req.headers.authorization.split(' ')[1];
 
-      const user = await this.usersService.findOne(decoded.email);
-      if (user) {
-        req.currentUser = user;
+        const decoded = await this.jwt.verify(token, {
+          secret: process.env.JWT_SECRET,
+        });
+
+        const user = await this.usersService.findOne(decoded.email);
+        if (user) {
+          req.currentUser = user;
+        }
       }
+      next();
+    } catch (error) {
+      throw new UnauthorizedException('Invalid token');
     }
-    next();
   }
 }

@@ -14,8 +14,6 @@ const Register = () => {
   const { loading, error } = registerReducer;
 
   useEffect(() => {
-    console.log('useEffect isAuthenticated:', loggedInUser);
-
     if (isAuthenticated || loggedInUser) {
       history.push('/');
     }
@@ -30,8 +28,6 @@ const Register = () => {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-
-  console.log(loggedInUser);
 
   return (
     <div>

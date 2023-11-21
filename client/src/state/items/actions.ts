@@ -61,7 +61,7 @@ export const getItems =
       });
     }
   };
-export const resetGetItems = () => async (dispatch: any) => {
+export const resetGetItemsReducer = () => async (dispatch: any) => {
   dispatch({
     type: GET_ITEMS_RESET,
   });

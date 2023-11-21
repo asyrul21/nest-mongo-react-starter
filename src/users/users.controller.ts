@@ -19,10 +19,8 @@ export class UserController {
 
   @Post('/signup')
   async signUp(@Res() response, @Body() body: CreateUserDto) {
-    const user = await this.authService.signup(body);
-    return response.status(HttpStatus.CREATED).json({
-      user,
-    });
+    const User = await this.authService.signup(body);
+    return response.status(HttpStatus.CREATED).json(User);
   }
 
   @Post('/signin')

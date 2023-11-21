@@ -29,8 +29,6 @@ const Navbar = () => {
     no_select: true,
   });
 
-  console.log('navbar', loggedInUser);
-
   const userIsLoggedIn = isAuthenticated && loggedInUser;
   return (
     <nav className={containerClasses}>

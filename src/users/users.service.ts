@@ -34,7 +34,21 @@ export class UsersService {
 
     try {
       const createdUser = new this.UserModel(User);
-      return await createdUser.save();
+      await createdUser.save();
+      const jwtPayload = { email: createdUser.email };
+
+      const result = {
+        _id: createdUser.id,
+        name: createdUser.name,
+        token: this.jwtService.sign(jwtPayload, {
+          secret: process.env.JWT_SECRET,
+          expiresIn: '60d',
+        }),
+        email: createdUser.email,
+        isAdmin: createdUser.isAdmin,
+      };
+
+      return result;
     } catch (error) {
       throw new BadRequestException(error.message || error);
     }
@@ -46,7 +60,6 @@ export class UsersService {
 
     if (foundUser) {
       const { password: foundUserPassword } = foundUser;
-
       if (bcrypt.compare(requestPassword, foundUserPassword)) {
         const jwtPayload = { email: user.email };
 
@@ -60,9 +73,9 @@ export class UsersService {
           email: foundUser.email,
           isAdmin: foundUser.isAdmin,
         };
+
         return result;
       }
-
       throw new UnauthorizedException('Incorrect username or password');
     }
     throw new UnauthorizedException('Incorrect username or password');

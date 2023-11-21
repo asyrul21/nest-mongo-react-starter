@@ -1,0 +1,18 @@
+.page_list_container {
+  //   border: 2px solid red;
+}
+
+.page_list_item {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 2px solid #35495e;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  &:hover {
+    background-color: #e3e3e3;
+  }
+  transition: background-color 0.2s;
+}
