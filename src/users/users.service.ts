@@ -60,7 +60,7 @@ export class UsersService {
 
     if (foundUser) {
       const { password: foundUserPassword } = foundUser;
-      if (bcrypt.compare(requestPassword, foundUserPassword)) {
+      if (await bcrypt.compare(requestPassword, foundUserPassword)) {
         const jwtPayload = { email: user.email };
 
         const result = {
