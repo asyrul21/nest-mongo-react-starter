@@ -12,6 +12,7 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path/posix';
 import { BullModule } from '@nestjs/bull';
 import { QueueModuleModule } from './queue-module/queue-module.module';
+import { SocketModule } from './socketio/socket.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { QueueModuleModule } from './queue-module/queue-module.module';
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '../../', 'client/build'),
     }),
+    SocketModule,
     BullModule.forRoot({
       redis: {
         host: 'localhost',
