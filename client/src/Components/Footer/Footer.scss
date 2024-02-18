@@ -1,0 +1,17 @@
+$footer_height: 32px;
+
+.app_footer {
+  height: $footer_height;
+  font-size: 12px;
+  color: white;
+  background-color: darkslategrey;
+}
+
+.footer_container {
+  color: inherit;
+  font-weight: 300;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -12,7 +12,7 @@ interface IModalProps {
 }
 
 // parent of this container needs to be position-relative
-const Modal = ({
+export const Modal = ({
   children,
   onClose,
   isOpen = false,
@@ -36,6 +36,7 @@ const Modal = ({
       style={{
         zIndex: computedZIndex,
       }}
+      data-testid="modal-root"
     >
       <div
         className={'Modal_container'}
@@ -44,7 +45,10 @@ const Modal = ({
         }}
       >
         <div className="Modal_heading">
-          <span style={{ fontWeight: 'bold', marginRight: '25px' }}>
+          <span
+            style={{ fontWeight: 'bold', marginRight: '25px' }}
+            data-testid="modal-title"
+          >
             {title}
           </span>
           <div className={closeButtonClasses} onClick={onClose} role="button">

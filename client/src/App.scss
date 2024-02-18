@@ -2,6 +2,15 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  color: #434b59;
+}
+
+a {
+  text-decoration: none;
+  color: #2e7bc1;
+  &:hover {
+    text-decoration: underline;
+  }
 }
 
 .app_main {
@@ -16,13 +25,6 @@
   // border: 2px solid red;
   width: 100%;
   // min-height: calc(100vh - 54px - 32px);
-}
-
-.app_title {
-  margin-top: 30px;
-  margin-bottom: 30px;
-  padding: 5px;
-  font-size: 28px;
 }
 
 .no_select {

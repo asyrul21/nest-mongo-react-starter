@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Loader = () => {
+export const Loader = () => {
   return (
     <div
       style={{
@@ -9,8 +9,9 @@ const Loader = () => {
         alignItems: 'flex-start',
         minHeight: 'inherit',
         height: 'inherit',
-        paddingTop: '52px',
+        paddingTop: '52px 0',
       }}
+      data-testid="loader-root"
     >
       <p>Loading...</p>
     </div>

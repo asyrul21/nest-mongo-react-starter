@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Error = ({ error }: { error?: string }) => {
+export const ErrorComponent = ({ error }: { error?: string }) => {
   return (
     <div
       style={{
@@ -8,12 +8,18 @@ const Error = ({ error }: { error?: string }) => {
         minHeight: 'inherit',
         width: '100%',
         textAlign: 'center',
+        padding: '20px',
       }}
+      data-testid="error-root"
     >
       <p className="error_header">Oops something went wrong!</p>
-      {error && <p className="error_text">{error}</p>}
+      {error && (
+        <p className="error_text" data-testid="error-text">
+          {error}
+        </p>
+      )}
     </div>
   );
 };
 
-export default Error;
+export default ErrorComponent;
